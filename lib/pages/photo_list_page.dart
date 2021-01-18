@@ -50,11 +50,10 @@ class _PhotoListPageState extends State<PhotoListPage> {
     var appId = _projectAppID;
     final updates = await Webservice().fetchUpdates();
 
-    updates.forEach((e) async {
+    updates.forEach((e) {
       if (e.appid == appId) {
         if (e.appversion > int.parse(_projectVersion)) {
-          print(e.url);
-          await tryOtaUpdate(e.url);
+          tryOtaUpdate(e.url);
         }
       }
     });
